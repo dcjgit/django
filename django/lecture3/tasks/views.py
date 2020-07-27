@@ -22,7 +22,9 @@ def add(request):
         form = NewTaskForm(request.POST)
         if form.is_valid():
            task = form.cleaned_data["task"]
-           request.session["tasks"] += [task]
+           #add task to list of tasks ONLY IF it is not already added!
+           if task not in request.session["tasks"]:
+               request.session["tasks"] += [task]
            return HttpResponseRedirect( reverse("tasks:index") )
         else:
             return render(request, "tasks/add.html", {
