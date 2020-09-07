@@ -3,19 +3,25 @@
     <head>
         <title>Hello</title>
         <script>
-            function hello() {
-                // let heading = document.querySelector("h1");  //const enforces immutability
-                const heading = document.querySelector("h1");
-                if ( heading.innerHTML == "Hello!") {
-                    heading.innerHTML = "Goodbye!";
-                } else {
-                    heading.innerHTML = "Hello!";
-                }
-            }
+            //after DOM is loaded, run the function code...
+            document.addEventListener('DOMContentLoaded', function() {
+
+                //when the submit button is clicked, run the function code...
+                document.querySelector('form').onsubmit = function() {
+                    //get the value of the name element...
+                    const nm = document.querySelector('#name').value;
+                    //display the name in an alert box.
+                    alert(`Hello, ${nm}!`);
+                };
+
+            });
         </script>
     </head>
     <body>
         <h1>Hello!</h1>
-        <button onclick="hello()">Click Here</button>
+        <form>
+            <input autofocus id="name" placeholder="Name" type="text">
+            <input type="submit">
+        </form>
     </body>
 </html>
